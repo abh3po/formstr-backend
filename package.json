@@ -1,0 +1,25 @@
+{
+  "name": "formstr-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Abhay <toabhayraizada@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^22.13.17",
+    "express": "^5.1.0",
+    "ln-service": "^57.24.0",
+    "qrcode": "^1.5.4",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/qrcode": "^1.5.5",
+    "@types/sqlite3": "^5.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc"
+  }
+}

@@ -1,0 +1,38 @@
+# Logs
+logs/
+*.log
+
+# Temp files
+temp/
+*tmp*
+
+# Cache files
+*.cache
+
+# Editor specific files
+*.sublime-workspace
+*.sublime-project
+.idea/*
+.vscode/*
+
+# IDEs and editors
+*.iml
+.idea/*
+.vscode/*
+*.swp
+*.swo
+*~
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Compiled output
+dist/
+build/
+
+# Dependency directories and files
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
