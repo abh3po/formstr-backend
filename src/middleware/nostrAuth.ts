@@ -21,7 +21,7 @@ export const validateNostrAuth = async (
     const encodedEvent = authHeader.replace("Nostr ", "");
     const decodedBytes = base64.decode(encodedEvent);
     const decodedString = new TextDecoder().decode(decodedBytes); // Convert Uint8Array to string
-    console.log("Decoded String:", decodedString);
+    // console.log("Decoded String:", decodedString);
     const event = JSON.parse(decodedString);
     // Validate event structure
     if (event.kind !== 27235) {
@@ -39,6 +39,8 @@ export const validateNostrAuth = async (
     // Validate URL
     const urlTag = event.tags.find((tag: string[]) => tag[0] === "u");
     const requestUrl = `${req.protocol}://${req.get("host")}${req.originalUrl}`;
+    console.log("REQUEST URL:", requestUrl);
+    console.log("EVENT URL TAG:", urlTag ? urlTag[1] : null);
     if (!urlTag || urlTag[1] !== requestUrl) {
       return res.status(401).json({ error: "Invalid URL tag" });
     }

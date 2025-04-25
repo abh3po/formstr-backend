@@ -1,6 +1,6 @@
 // Client-side Nostr utilities (bundled with Webpack)
 import { schnorr } from "@noble/curves/secp256k1";
-import { sha256 } from "@noble/hashes/sha2";
+import { sha256 } from "@noble/hashes/sha256";
 import { bytesToHex } from "@noble/hashes/utils";
 
 async function generateNostrEvent(privateKey, method, url, payload = null) {
@@ -46,7 +46,8 @@ async function createShortLink() {
   const responseDiv = document.getElementById("response");
 
   if (!name || !url || !privateKey) {
-    responseDiv.textContent = "Error: All fields are required.";
+    responseDiv.textContent =
+      "Error: All fields are required for creating a short link.";
     return;
   }
 
@@ -54,7 +55,7 @@ async function createShortLink() {
     const event = await generateNostrEvent(
       privateKey,
       "POST",
-      "http://localhost:3000/api/shortlink",
+      "http://localhost:5432/api/shortlink",
       { name, url }
     );
 
@@ -76,26 +77,16 @@ async function createShortLink() {
 
 async function getShortLink() {
   const name = document.getElementById("getName").value;
-  const privateKey = document.getElementById("getPrivateKey").value;
   const responseDiv = document.getElementById("response");
 
-  if (!name || !privateKey) {
-    responseDiv.textContent = "Error: All fields are required.";
+  if (!name) {
+    responseDiv.textContent = "Error: Short name is required.";
     return;
   }
 
   try {
-    const event = await generateNostrEvent(
-      privateKey,
-      "GET",
-      `http://localhost:3000/api/shortlink/${name}`
-    );
-
     const res = await fetch(`/api/shortlink/${name}`, {
       method: "GET",
-      headers: {
-        Authorization: `Nostr ${btoa(JSON.stringify(event))}`,
-      },
     });
 
     const data = await res.json();

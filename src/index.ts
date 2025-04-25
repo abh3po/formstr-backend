@@ -4,7 +4,7 @@ import { initDb } from "./models/shortLink";
 import shortLinkRoutes from "./routes/shortLink";
 
 const app = express();
-const port = 3000;
+const port = 5432;
 
 app.use(express.json());
 
