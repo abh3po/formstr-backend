@@ -22,7 +22,7 @@ initDb();
 // Routes
 app.use("/api", shortLinkRoutes);
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Server running at http://localhost:${port}`);
   console.log(`Test client available at http://localhost:${port}/test`);
 });
