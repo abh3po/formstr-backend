@@ -55,7 +55,7 @@ async function createShortLink() {
     const event = await generateNostrEvent(
       privateKey,
       "POST",
-      "http://localhost:5432/api/shortlink",
+      "http://localhost:5000/api/shortlink",
       { name, url }
     );
 
